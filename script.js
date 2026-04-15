@@ -1,41 +1,46 @@
-// week 10
-class MarineResearcher {
-    constructor(name, email, specialty) {
-        this.name = name;
-        this.email = email;
-        this.specialty = specialty;
-    }
+function createAccessTracker() {
+    let scans = 0;
+    return function() {
+        scans++;
+        return scans;
+    };
+}
+const logScan = createAccessTracker();
 
-    getHtml() {
-        return `<div class="crew-card">
-                    <h3>⚓ ${this.name}</h3>
-                    <p><strong>Comms:</strong> ${this.email} <br>
-                    <strong>Assigned Vessel:</strong> ${this.specialty}</p>
-                </div>`;
-    }
+function issueGear(diverName, ...gearItems) {
+    return `<strong>Assigned Gear:</strong> <span class="gear-list">${gearItems.join(' | ')}</span>`;
 }
 
-// week 9
-async function loadCrew() {
+function establishConnection() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Secure Connection Established.");
+        }, 2000); 
+    });
+}
+
+async function locateTarget() {
     const rosterDiv = document.getElementById('roster');
+    await establishConnection(); 
 
     try {
-        // week 11
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const rawCrew = await response.json();
+        const targetDiver = rawCrew.find(member => member.address.city === "Gwenborough");
+        const scanNumber = logScan(); 
 
-        // week 6
-        const crewMembers = rawCrew.map(user => new MarineResearcher(user.name, user.email, user.company.name));
-
-        // week 6
-        const activeCrew = crewMembers.filter(member => member.name.toLowerCase().includes("e"));
-        rosterDiv.innerHTML = '';
-        activeCrew.forEach(member => {
-            rosterDiv.innerHTML += member.getHtml();
-        });
-
+        rosterDiv.innerHTML = `
+            <div class="radar-card">
+                <h3 class="success">✔️ Scan #${scanNumber} Complete</h3>
+                <h2>🎯 Target Located: ${targetDiver.name}</h2>
+                <p><strong>Aquatic Base:</strong> ${targetDiver.address.city}</p>
+                
+                <p>${issueGear(targetDiver.name, "Oxygen Tank", "Thermal Suit", "Flares", "Depth Gauge")}</p>
+            </div>
+        `;
     } catch (error) {
-        rosterDiv.innerHTML = "sonar failure :( Could not reach the remote server.";
+        rosterDiv.innerHTML = "⚠️ Sonar Failure.";
+        console.error(error);
     }
 }
-loadCrew();
+locateTarget();
