@@ -31,7 +31,7 @@ async function locateTarget() {
 
         rosterDiv.innerHTML = `
             <div class="radar-card">
-                <h3 class="success">✔️ Scan #${scanNumber} Complete</h3>
+                <h3 class="success">Scan #${scanNumber} Complete</h3>
                 <h2> Person found: ${targetDiver.name}</h2>
                 <p><strong>Aquatic Base:</strong> ${targetDiver.address.city}</p>
                 
@@ -39,7 +39,7 @@ async function locateTarget() {
             </div>
         `;
     } catch (error) {
-        rosterDiv.innerHTML = "⚠️ Sonar Failure.";
+        rosterDiv.innerHTML = "Sonar Failure";
         console.error(error);
     }
 }
