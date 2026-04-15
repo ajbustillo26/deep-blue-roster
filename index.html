@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>locator of the sea!</title>
+    <title>Deep Blue Target Locator</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Courier New', Courier, monospace; background-color: #001f3f; color: #7FDBFF; padding: 40px; }
-        h1 { border-bottom: 2px solid #39CCCC; padding-bottom: 10px; }
-        .radar-card { background-color: #001122; border: 2px solid #39CCCC; padding: 20px; border-radius: 8px; max-width: 500px; box-shadow: 0 0 15px #39CCCC; margin-top: 20px;}
-        .gear-list { color: #FF851B; font-weight: bold; }
-        .success { color: #2ECC40; }
+        body {
+            font-family: 'Jura', sans-serif;
+            background: radial-gradient(circle at center, #0a9396 0%, #005f73 30%, #001f3f 70%, #000000 100%);
+            color: #E0F7FA;
+            padding: 40px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5em;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0px 0px 25px rgba(153, 217, 234, 0.9);
+            margin-bottom: 50px;
+        }
+
+        #roster {
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .radar-card {
+            background: rgba(0, 20, 40, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid #39CCCC;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 550px;
+            margin: 0 auto; 
+            box-shadow: 0 0 30px rgba(57, 204, 204, 0.3), inset 0 0 20px rgba(57, 204, 204, 0.1);
+            text-align: left;
+        }
+
+        h2 { border-bottom: 1px solid #39CCCC; padding-bottom: 10px; }
+        .gear-list { color: #FF851B; font-weight: bold; letter-spacing: 1px; }
+        .success { color: #2ECC40; text-align: center; font-size: 1.3em; margin-top: 0; text-shadow: 0 0 10px rgba(46, 204, 64, 0.5); }
     </style>
 </head>
 <body>
-    <h1>locating now..</h1>
-    <div id="roster">now playing whale sounds...</div>
+    <h1>📡 Deep Blue Target Locator</h1>
+    <div id="roster">Initiating Sonar Protocol...</div>
 
     <script type="module" src="script.js"></script>
 </body>
