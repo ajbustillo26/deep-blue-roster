@@ -3,54 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Blue locator</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&display=swap" rel="stylesheet">
-    
+    <title>Deep Blue Target Locator</title>
     <style>
-        body {
-            font-family: 'Jura', sans-serif;
-            background: radial-gradient(circle at center, #0a9396 0%, #005f73 30%, #001f3f 70%, #000000 100%);
-            color: #E0F7FA;
-            padding: 40px;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        h1 {
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #003366;
+            color: #e0f7fa; 
+            padding: 40px; 
             text-align: center;
-            font-size: 3.5em;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0px 0px 25px rgba(153, 217, 234, 0.9);
-            margin-bottom: 50px;
         }
-
-        #roster {
-            text-align: center;
-            font-size: 1.2em;
+        h1 { 
+            border-bottom: 2px solid #00acc1; 
+            padding-bottom: 10px; 
         }
-
-        .radar-card {
-            background: rgba(0, 20, 40, 0.5);
-            backdrop-filter: blur(8px);
-            border: 1px solid #39CCCC;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 550px;
-            margin: 0 auto; 
-            box-shadow: 0 0 30px rgba(57, 204, 204, 0.3), inset 0 0 20px rgba(57, 204, 204, 0.1);
-            text-align: left;
+        .radar-card { 
+            background-color: #004d80;
+            border: 2px solid #00acc1; 
+            padding: 20px; 
+            border-radius: 8px; 
+            max-width: 450px; 
+            margin: 20px auto;
+            text-align: left; 
         }
-
-        h2 { border-bottom: 1px solid #39CCCC; padding-bottom: 10px; }
-        .gear-list { color: #FF851B; font-weight: bold; letter-spacing: 1px; }
-        .success { color: #2ECC40; text-align: center; font-size: 1.3em; margin-top: 0; text-shadow: 0 0 10px rgba(46, 204, 64, 0.5); }
+        .gear-list { color: #ffcc00; font-weight: bold; }
+        .success { color: #66ff66; margin-top: 0; }
     </style>
 </head>
 <body>
-    <h1>Deep blue target Locator</h1>
-    <div id="roster">noe playing whale sounds...</div>
+    <h1>🌊 Deep Blue Target Locator</h1>
+    <div id="roster">Initiating Sonar Protocol...</div>
 
     <script type="module" src="script.js"></script>
 </body>
