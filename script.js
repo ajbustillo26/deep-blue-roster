@@ -1,46 +1,28 @@
-function createAccessTracker() {
-    let scans = 0;
-    return function() {
-        scans++;
-        return scans;
-    };
-}
-const logScan = createAccessTracker();
-
-function issueGear(diverName, ...gearItems) {
-    return `<strong>Assigned Gear:</strong> <span class="gear-list">${gearItems.join(' | ')}</span>`;
-}
-
-function establishConnection() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("Secure Connection Established.");
-        }, 2000); 
-    });
-}
-
-async function locateTarget() {
+const renderDiverCard = function(diver) {
+    return `
+        <div class="minimal-card">
+            <span class="zone-label">Sector: ${diver.address.city}</span>
+            <h3>${diver.name}</h3>
+            <p><strong>Comms:</strong> ${diver.email}</p>
+        </div>
+    `;
+};
+document.addEventListener("DOMContentLoaded", () => {
+    
     const rosterDiv = document.getElementById('roster');
-    await establishConnection(); 
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(rawCrew => {
+            const squad = rawCrew.filter(person => person.id <= 4);
+            rosterDiv.innerHTML = '';
+            squad.forEach(diver => {
+                rosterDiv.innerHTML += renderDiverCard(diver);
+            });
+            
+        })
+        .catch(error => {
+            rosterDiv.innerHTML = "Connection failure.";
+            console.error(error);
+        });
 
-    try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        const rawCrew = await response.json();
-        const targetDiver = rawCrew.find(member => member.address.city === "Gwenborough");
-        const scanNumber = logScan(); 
-
-        rosterDiv.innerHTML = `
-            <div class="radar-card">
-                <h3 class="success">Scan #${scanNumber} Complete</h3>
-                <h2> Person found: ${targetDiver.name}</h2>
-                <p><strong>Aquatic Base:</strong> ${targetDiver.address.city}</p>
-                
-                <p>${issueGear(targetDiver.name, "Oxygen Tank", "Thermal Suit", "Flares", "Depth Gauge")}</p>
-            </div>
-        `;
-    } catch (error) {
-        rosterDiv.innerHTML = "Sonar Failure";
-        console.error(error);
-    }
-}
-locateTarget();
+});
